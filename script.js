@@ -1,6 +1,5 @@
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
-
 (() => {
 "use strict";
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -343,49 +342,40 @@ if ("scrollRestoration" in history) {
 
 })();
 
-const memberCountElement = $("#member-count");
-const clubAgeElement = $("#club-age");
+const memberCountElement = document.querySelector("#member-count");
+const clubAgeElement = document.querySelector("#club-age");
 
 const CLUB_API_URL = "https://api.chess.com/pub/club/shonen-nexus";
 
-const loadClubStats = () => {
-    if (!memberCountElement && !clubAgeElement) return;
+const loadClubStats = async () => {
+    try {
+        const response = await fetch(CLUB_API_URL);
 
-    const callbackName = `shonenNexusClub_${Date.now()}`;
-
-    window[callbackName] = data => {
-        try {
-            if (typeof data.members_count === "number" && memberCountElement) {
-                memberCountElement.textContent =
-                    data.members_count.toLocaleString();
-            }
-
-            if (typeof data.created === "number" && clubAgeElement) {
-                const createdDate = new Date(data.created * 1000);
-                const ageMilliseconds = Date.now() - createdDate.getTime();
-
-                const ageDays = Math.max(
-                    0,
-                    Math.floor(ageMilliseconds / 86400000)
-                );
-
-                clubAgeElement.textContent =
-                    ageDays.toLocaleString();
-            }
-        } finally {
-            delete window[callbackName];
-            script.remove();
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
         }
-    };
 
-    const script = document.createElement("script");
+        const data = await response.json();
 
-    script.src =
-        `${CLUB_API_URL}?callback=${encodeURIComponent(callbackName)}`;
+        if (typeof data.members_count === "number" && memberCountElement) {
+            memberCountElement.textContent =
+                data.members_count.toLocaleString();
+        }
 
-    script.onerror = () => {
-        delete window[callbackName];
-        script.remove();
+        if (typeof data.created === "number" && clubAgeElement) {
+            const createdDate = new Date(data.created * 1000);
+
+            const ageDays = Math.max(
+                0,
+                Math.floor(
+                    (Date.now() - createdDate.getTime()) / 86400000
+                )
+            );
+
+            clubAgeElement.textContent = ageDays.toLocaleString();
+        }
+    } catch (error) {
+        console.error("Failed to load Chess.com club stats:", error);
 
         if (memberCountElement) {
             memberCountElement.textContent = "—";
@@ -394,9 +384,7 @@ const loadClubStats = () => {
         if (clubAgeElement) {
             clubAgeElement.textContent = "—";
         }
-    };
-
-    document.head.appendChild(script);
+    }
 };
 
 loadClubStats();
