@@ -1,3 +1,5 @@
+const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
 (() => {
 "use strict";
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -339,3 +341,61 @@ if ("scrollRestoration" in history) {
 }
 
 })();
+
+const memberCountElement = $("#member-count");
+const clubAgeElement = $("#club-age");
+
+const CLUB_API_URL = "https://api.chess.com/pub/club/shonen-nexus";
+
+const loadClubStats = () => {
+    if (!memberCountElement && !clubAgeElement) return;
+
+    const callbackName = `shonenNexusClub_${Date.now()}`;
+
+    window[callbackName] = data => {
+        try {
+            if (typeof data.members_count === "number" && memberCountElement) {
+                memberCountElement.textContent =
+                    data.members_count.toLocaleString();
+            }
+
+            if (typeof data.created === "number" && clubAgeElement) {
+                const createdDate = new Date(data.created * 1000);
+                const ageMilliseconds = Date.now() - createdDate.getTime();
+
+                const ageDays = Math.max(
+                    0,
+                    Math.floor(ageMilliseconds / 86400000)
+                );
+
+                clubAgeElement.textContent =
+                    ageDays.toLocaleString();
+            }
+        } finally {
+            delete window[callbackName];
+            script.remove();
+        }
+    };
+
+    const script = document.createElement("script");
+
+    script.src =
+        `${CLUB_API_URL}?callback=${encodeURIComponent(callbackName)}`;
+
+    script.onerror = () => {
+        delete window[callbackName];
+        script.remove();
+
+        if (memberCountElement) {
+            memberCountElement.textContent = "—";
+        }
+
+        if (clubAgeElement) {
+            clubAgeElement.textContent = "—";
+        }
+    };
+
+    document.head.appendChild(script);
+};
+
+loadClubStats();
