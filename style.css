@@ -1,37 +1,50 @@
 :root {
-    --bg: #0b0912;
-    --bg-soft: #12101b;
-    --bg-deep: #07060c;
+    --bg: #08080d;
+    --bg-soft: #101018;
+    --bg-deep: #050508;
 
-    --card: #17131c;
-    --card-hover: #211923;
+    --card: #14141d;
+    --card-hover: #1d1c28;
 
-    --vermilion: #c83f35;
-    --vermilion-light: #ed6955;
-    --vermilion-dark: #79251f;
+    /* BLEACH TYBW PALETTE */
+    --vermilion: #b51f2b;
+    --vermilion-light: #e13a46;
+    --vermilion-dark: #69131b;
 
-    --purple: #8f6bb3;
-    --purple-light: #bda1d5;
-    --purple-dark: #51406b;
+    --purple: #7656a8;
+    --purple-light: #b493e0;
+    --purple-dark: #443365;
 
-    --moon: #eee4d1;
-    --parchment: #d5bf94;
-    --parchment-light: #ead9b7;
+    /* QUINCY / SPIRIT COLORS */
+    --blue: #5b9bd5;
+    --blue-light: #9ccfff;
+    --blue-dark: #294b70;
 
-    --white: #f5eee1;
-    --gray: #aaa093;
-    --dark-gray: #665d57;
+    --moon: #f1f0eb;
+    --parchment: #c9c8c2;
+    --parchment-light: #e3e2dc;
 
-    --ink: #09070c;
+    --white: #f5f4f0;
+    --gray: #a19fa5;
+    --dark-gray: #625f68;
 
-    --border: rgba(234, 217, 183, 0.14);
-    --border-strong: rgba(234, 217, 183, 0.25);
+    --ink: #050507;
 
-    --shadow: rgba(0, 0, 0, 0.45);
+    --border: rgba(241, 240, 235, 0.13);
+    --border-strong: rgba(241, 240, 235, 0.24);
+
+    --shadow: rgba(0, 0, 0, 0.55);
+
+    /* KEN */
+    --ken: #f0b84b;
+    --ken-light: #ffd978;
+    --ken-dark: #8d641b;
 }
 
 
-/* RESET */
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     margin: 0;
@@ -49,19 +62,24 @@ body {
     background:
         radial-gradient(
             circle at 75% 8%,
-            rgba(143, 107, 179, 0.14),
+            rgba(118, 86, 168, 0.15),
             transparent 28%
         ),
         radial-gradient(
             circle at 10% 65%,
-            rgba(200, 63, 53, 0.08),
+            rgba(181, 31, 43, 0.08),
             transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 65%,
+            rgba(91, 155, 213, 0.035),
+            transparent 28%
         ),
         linear-gradient(
             135deg,
-            #08070d 0%,
-            #100c15 48%,
-            #08070d 100%
+            #050508 0%,
+            #0d0c13 48%,
+            #060609 100%
         );
 
     color: var(--white);
@@ -77,17 +95,18 @@ body::before {
     content: "";
 
     position: fixed;
+
     inset: 0;
 
     pointer-events: none;
 
     z-index: -10;
 
-    opacity: 0.045;
+    opacity: 0.04;
 
     background-image:
         radial-gradient(
-            rgba(234, 217, 183, 0.9) 0.55px,
+            rgba(241, 240, 235, 0.9) 0.55px,
             transparent 0.55px
         );
 
@@ -109,7 +128,7 @@ body::after {
         linear-gradient(
             90deg,
             transparent,
-            rgba(234, 217, 183, 0.12),
+            rgba(241, 240, 235, 0.11),
             transparent
         );
 
@@ -131,11 +150,13 @@ button {
 
 ::selection {
     background: var(--vermilion);
-    color: var(--moon);
+    color: var(--white);
 }
 
 
-/* ATMOSPHERE */
+/* =========================================================
+   ATMOSPHERE
+========================================================= */
 
 .background-glow {
     position: fixed;
@@ -151,7 +172,7 @@ button {
 
     z-index: -4;
 
-    opacity: 0.1;
+    opacity: 0.11;
 }
 
 .glow-one {
@@ -169,7 +190,9 @@ button {
 }
 
 
-/* NAVIGATION */
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
 .navbar {
     position: fixed;
@@ -184,8 +207,8 @@ button {
     background:
         linear-gradient(
             180deg,
-            rgba(8, 7, 13, 0.97),
-            rgba(8, 7, 13, 0.88)
+            rgba(5, 5, 8, 0.98),
+            rgba(5, 5, 8, 0.9)
         );
 
     backdrop-filter: blur(18px);
@@ -208,7 +231,8 @@ button {
         linear-gradient(
             90deg,
             transparent,
-            rgba(200, 63, 53, 0.5),
+            rgba(181, 31, 43, 0.65),
+            rgba(118, 86, 168, 0.45),
             transparent
         );
 }
@@ -230,7 +254,9 @@ button {
 }
 
 
-/* LOGO */
+/* =========================================================
+   LOGO
+========================================================= */
 
 .logo {
     display: flex;
@@ -266,10 +292,10 @@ button {
         linear-gradient(
             145deg,
             var(--vermilion-light),
-            var(--vermilion)
+            var(--vermilion-dark)
         );
 
-    color: var(--moon);
+    color: var(--white);
 
     font-family: "Rajdhani", sans-serif;
 
@@ -277,30 +303,32 @@ button {
 
     font-weight: 800;
 
-    border: 1px solid rgba(234, 217, 183, 0.3);
+    border: 1px solid rgba(241, 240, 235, 0.28);
 
     box-shadow:
-        3px 3px 0 var(--parchment),
-        0 0 20px rgba(200, 63, 53, 0.18);
+        3px 3px 0 var(--purple),
+        0 0 20px rgba(181, 31, 43, 0.22);
 
     transform: rotate(-3deg);
 }
 
 
-/* NAV LINKS */
+/* =========================================================
+   NAV LINKS
+========================================================= */
 
 nav {
     display: flex;
 
     align-items: center;
 
-    gap: 32px;
+    gap: 28px;
 }
 
 nav a {
     position: relative;
 
-    color: #9d948b;
+    color: #918f98;
 
     font-size: 10px;
 
@@ -357,7 +385,7 @@ nav a::after {
 }
 
 nav a:hover {
-    color: var(--parchment-light);
+    color: var(--white);
 
     transform: translateY(-1px);
 }
@@ -371,18 +399,20 @@ nav a:hover::after {
 }
 
 
-/* NAV CTA */
+/* =========================================================
+   NAV CTA
+========================================================= */
 
 .nav-button {
     padding: 10px 18px;
 
-    border: 1px solid rgba(200, 63, 53, 0.65);
+    border: 1px solid rgba(181, 31, 43, 0.7);
 
     background:
         linear-gradient(
             135deg,
-            rgba(200, 63, 53, 0.12),
-            rgba(143, 107, 179, 0.05)
+            rgba(181, 31, 43, 0.14),
+            rgba(118, 86, 168, 0.06)
         );
 
     color: var(--vermilion-light);
@@ -405,16 +435,18 @@ nav a:hover::after {
 .nav-button:hover {
     background: var(--vermilion);
 
-    color: var(--moon);
+    color: var(--white);
 
     box-shadow:
-        4px 4px 0 var(--parchment);
+        4px 4px 0 var(--purple);
 
     transform: translate(-2px, -2px);
 }
 
 
-/* HERO */
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero {
     position: relative;
@@ -451,7 +483,7 @@ nav a:hover::after {
         linear-gradient(
             125deg,
             transparent 45%,
-            rgba(200, 63, 53, 0.045) 46%,
+            rgba(181, 31, 43, 0.05) 46%,
             transparent 48%
         );
 
@@ -467,7 +499,9 @@ nav a:hover::after {
 }
 
 
-/* EYEBROW */
+/* =========================================================
+   EYEBROW
+========================================================= */
 
 .eyebrow {
     display: inline-flex;
@@ -498,13 +532,14 @@ nav a:hover::after {
     background: var(--vermilion);
 
     box-shadow:
-        0 0 0 4px rgba(200, 63, 53, 0.08),
-        0 0 15px rgba(200, 63, 53, 0.7);
+        0 0 0 4px rgba(181, 31, 43, 0.08),
+        0 0 15px rgba(181, 31, 43, 0.7);
 
     animation: pulse 1.8s ease-in-out infinite;
 }
 
 @keyframes pulse {
+
     0%,
     100% {
         opacity: 0.5;
@@ -518,7 +553,9 @@ nav a:hover::after {
 }
 
 
-/* HERO TITLE */
+/* =========================================================
+   HERO TITLE
+========================================================= */
 
 .hero h1 {
     max-width: 850px;
@@ -538,7 +575,7 @@ nav a:hover::after {
     color: var(--moon);
 
     text-shadow:
-        3px 4px 0 rgba(200, 63, 53, 0.08);
+        3px 4px 0 rgba(181, 31, 43, 0.09);
 }
 
 .hero h1 span {
@@ -571,14 +608,16 @@ nav a:hover::after {
 }
 
 
-/* HERO DESCRIPTION */
+/* =========================================================
+   HERO DESCRIPTION
+========================================================= */
 
 .hero-description {
     max-width: 580px;
 
     margin-top: 37px;
 
-    color: #938980;
+    color: #918d95;
 
     font-size: 14px;
 
@@ -590,7 +629,9 @@ nav a:hover::after {
 }
 
 
-/* BUTTONS */
+/* =========================================================
+   BUTTONS
+========================================================= */
 
 .hero-buttons {
     display: flex;
@@ -635,23 +676,23 @@ nav a:hover::after {
         linear-gradient(
             135deg,
             var(--vermilion-light),
-            var(--vermilion)
+            var(--vermilion-dark)
         );
 
-    color: var(--moon);
+    color: var(--white);
 
-    border: 1px solid rgba(234, 217, 183, 0.22);
+    border: 1px solid rgba(241, 240, 235, 0.22);
 
     box-shadow:
-        5px 5px 0 var(--parchment);
+        5px 5px 0 var(--purple);
 }
 
 .primary-button:hover {
     transform: translate(-3px, -3px);
 
     box-shadow:
-        8px 8px 0 var(--parchment),
-        0 0 30px rgba(200, 63, 53, 0.15);
+        8px 8px 0 var(--purple),
+        0 0 30px rgba(181, 31, 43, 0.2);
 }
 
 .primary-button span {
@@ -662,24 +703,26 @@ nav a:hover::after {
     border: 1px solid var(--border-strong);
 
     background:
-        rgba(234, 217, 183, 0.025);
+        rgba(241, 240, 235, 0.025);
 
-    color: #aaa097;
+    color: #aaa7af;
 }
 
 .secondary-button:hover {
-    border-color: rgba(143, 107, 179, 0.55);
+    border-color: rgba(118, 86, 168, 0.55);
 
     color: var(--purple-light);
 
     background:
-        rgba(143, 107, 179, 0.07);
+        rgba(118, 86, 168, 0.07);
 
     transform: translateY(-2px);
 }
 
 
-/* HERO STATS */
+/* =========================================================
+   HERO STATS
+========================================================= */
 
 .hero-stats {
     display: flex;
@@ -714,7 +757,7 @@ nav a:hover::after {
 .hero-stats span {
     max-width: 125px;
 
-    color: #625a54;
+    color: #625f68;
 
     font-size: 8px;
 
@@ -733,13 +776,15 @@ nav a:hover::after {
         linear-gradient(
             180deg,
             transparent,
-            rgba(234, 217, 183, 0.25),
+            rgba(241, 240, 235, 0.25),
             transparent
         );
 }
 
 
-/* HERO VISUAL */
+/* =========================================================
+   HERO VISUAL
+========================================================= */
 
 .hero-visual {
     position: relative;
@@ -753,12 +798,14 @@ nav a:hover::after {
 
     filter:
         drop-shadow(
-            0 0 40px rgba(143, 107, 179, 0.08)
+            0 0 40px rgba(118, 86, 168, 0.09)
         );
 }
 
 
-/* CORE */
+/* =========================================================
+   CORE
+========================================================= */
 
 .nexus-core {
     position: absolute;
@@ -780,16 +827,16 @@ nav a:hover::after {
     background:
         radial-gradient(
             circle,
-            rgba(238, 228, 209, 0.08),
-            rgba(143, 107, 179, 0.04) 38%,
+            rgba(241, 240, 235, 0.07),
+            rgba(118, 86, 168, 0.05) 38%,
             transparent 68%
         );
 
-    border: 1px solid rgba(234, 217, 183, 0.18);
+    border: 1px solid rgba(241, 240, 235, 0.18);
 
     box-shadow:
-        0 0 100px rgba(143, 107, 179, 0.08),
-        inset 0 0 60px rgba(200, 63, 53, 0.035);
+        0 0 100px rgba(118, 86, 168, 0.09),
+        inset 0 0 60px rgba(181, 31, 43, 0.04);
 }
 
 .core-inner {
@@ -807,16 +854,16 @@ nav a:hover::after {
     background:
         radial-gradient(
             circle at 35% 30%,
-            rgba(200, 63, 53, 0.18),
+            rgba(181, 31, 43, 0.2),
             transparent 50%
         ),
-        #08070c;
+        #050507;
 
     border: 2px solid var(--vermilion);
 
     box-shadow:
-        0 0 0 8px rgba(200, 63, 53, 0.035),
-        0 0 55px rgba(200, 63, 53, 0.2);
+        0 0 0 8px rgba(181, 31, 43, 0.035),
+        0 0 55px rgba(181, 31, 43, 0.22);
 }
 
 .core-inner::before {
@@ -828,7 +875,7 @@ nav a:hover::after {
 
     border-radius: 50%;
 
-    border: 1px solid rgba(234, 217, 183, 0.12);
+    border: 1px solid rgba(241, 240, 235, 0.12);
 }
 
 .core-inner span {
@@ -845,11 +892,13 @@ nav a:hover::after {
     line-height: 1;
 
     text-shadow:
-        3px 3px 0 rgba(234, 217, 183, 0.7);
+        3px 3px 0 rgba(241, 240, 235, 0.55);
 }
 
 
-/* ORBITS */
+/* =========================================================
+   ORBITS
+========================================================= */
 
 .orbit {
     position: absolute;
@@ -861,7 +910,7 @@ nav a:hover::after {
 
     transform: translate(-50%, -50%);
 
-    border: 1px solid rgba(234, 217, 183, 0.12);
+    border: 1px solid rgba(241, 240, 235, 0.12);
 }
 
 .orbit-one {
@@ -878,7 +927,7 @@ nav a:hover::after {
     width: 470px;
     height: 285px;
 
-    border-color: rgba(143, 107, 179, 0.2);
+    border-color: rgba(118, 86, 168, 0.23);
 
     transform:
         translate(-50%, -50%)
@@ -889,6 +938,7 @@ nav a:hover::after {
 }
 
 @keyframes orbit {
+
     from {
         transform:
             translate(-50%, -50%)
@@ -903,6 +953,7 @@ nav a:hover::after {
 }
 
 @keyframes orbitReverse {
+
     from {
         transform:
             translate(-50%, -50%)
@@ -917,7 +968,9 @@ nav a:hover::after {
 }
 
 
-/* SYMBOLS */
+/* =========================================================
+   BLEACH SYMBOLS
+========================================================= */
 
 .anime-symbol {
     position: absolute;
@@ -932,11 +985,11 @@ nav a:hover::after {
     background:
         linear-gradient(
             145deg,
-            rgba(23, 18, 27, 0.95),
-            rgba(10, 8, 14, 0.95)
+            rgba(20, 19, 29, 0.95),
+            rgba(5, 5, 8, 0.96)
         );
 
-    border: 1px solid rgba(234, 217, 183, 0.17);
+    border: 1px solid rgba(241, 240, 235, 0.17);
 
     color: var(--parchment);
 
@@ -945,7 +998,7 @@ nav a:hover::after {
     font-size: 26px;
 
     box-shadow:
-        5px 5px 0 rgba(0, 0, 0, 0.25);
+        5px 5px 0 rgba(0, 0, 0, 0.3);
 
     backdrop-filter: blur(10px);
 
@@ -972,7 +1025,7 @@ nav a:hover::after {
     bottom: 68px;
     left: 53px;
 
-    color: var(--parchment);
+    color: var(--blue-light);
 }
 
 .symbol-four {
@@ -985,7 +1038,9 @@ nav a:hover::after {
 }
 
 
-/* ENERGY LINES */
+/* =========================================================
+   ENERGY LINES
+========================================================= */
 
 .energy-line {
     position: absolute;
@@ -1037,11 +1092,21 @@ nav a:hover::after {
     top: 230px;
     left: 255px;
 
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--blue),
+            transparent
+        );
+
     transform: rotate(68deg);
 }
 
 
-/* SPIRIT TAG */
+/* =========================================================
+   SPIRIT TAG
+========================================================= */
 
 .spirit-tag {
     position: absolute;
@@ -1057,10 +1122,10 @@ nav a:hover::after {
 
     padding: 6px 13px;
 
-    border: 1px solid rgba(234, 217, 183, 0.2);
+    border: 1px solid rgba(241, 240, 235, 0.2);
 
     background:
-        rgba(8, 7, 12, 0.82);
+        rgba(5, 5, 8, 0.85);
 
     color: var(--parchment);
 
@@ -1078,7 +1143,9 @@ nav a:hover::after {
 }
 
 
-/* SECTIONS */
+/* =========================================================
+   SECTIONS
+========================================================= */
 
 .section {
     width: min(1100px, 92%);
@@ -1149,7 +1216,7 @@ nav a:hover::after {
 
     margin-top: 28px;
 
-    color: #8e847c;
+    color: #8d8991;
 
     font-size: 14px;
 
@@ -1161,7 +1228,9 @@ nav a:hover::after {
 }
 
 
-/* FEATURE GRID */
+/* =========================================================
+   FEATURE GRID
+========================================================= */
 
 .feature-grid {
     display: grid;
@@ -1185,8 +1254,8 @@ nav a:hover::after {
     background:
         linear-gradient(
             145deg,
-            rgba(31, 23, 31, 0.95),
-            rgba(12, 9, 15, 0.98)
+            rgba(25, 24, 34, 0.96),
+            rgba(8, 8, 12, 0.98)
         );
 
     border: 1px solid var(--border);
@@ -1247,17 +1316,17 @@ nav a:hover::after {
 .feature-card:hover {
     transform: translateY(-7px);
 
-    border-color: rgba(200, 63, 53, 0.5);
+    border-color: rgba(181, 31, 43, 0.5);
 
     background:
         linear-gradient(
             145deg,
-            #24191d,
-            #100b11
+            #21171c,
+            #09080d
         );
 
     box-shadow:
-        7px 7px 0 rgba(200, 63, 53, 0.08);
+        7px 7px 0 rgba(181, 31, 43, 0.08);
 }
 
 .feature-card:hover::after {
@@ -1265,13 +1334,13 @@ nav a:hover::after {
 }
 
 .feature-card.featured {
-    border-color: rgba(143, 107, 179, 0.3);
+    border-color: rgba(118, 86, 168, 0.34);
 
     background:
         linear-gradient(
             145deg,
-            rgba(35, 27, 42, 0.95),
-            rgba(13, 10, 17, 0.98)
+            rgba(30, 25, 42, 0.96),
+            rgba(8, 8, 13, 0.98)
         );
 }
 
@@ -1290,7 +1359,7 @@ nav a:hover::after {
     top: 25px;
     right: 25px;
 
-    color: #453d3d;
+    color: #46434c;
 
     font-family: "Rajdhani", sans-serif;
 
@@ -1324,15 +1393,21 @@ nav a:hover::after {
 .feature-card p {
     margin-top: 10px;
 
-    color: #776e68;
+    color: #77737c;
 
     font-size: 12px;
 
     line-height: 1.7;
 }
 
+.feature-card p strong {
+    color: var(--parchment-light);
+}
 
-/* GENERATIONS */
+
+/* =========================================================
+   GENERATIONS / ANIME
+========================================================= */
 
 .generations {
     position: relative;
@@ -1344,14 +1419,14 @@ nav a:hover::after {
     background:
         radial-gradient(
             circle at 50% 0%,
-            rgba(143, 107, 179, 0.08),
+            rgba(118, 86, 168, 0.09),
             transparent 40%
         ),
         linear-gradient(
             135deg,
-            #09070d,
-            #130d15,
-            #09070d
+            #07070b,
+            #110d16,
+            #07070b
         );
 
     border-top: 1px solid var(--border);
@@ -1375,7 +1450,7 @@ nav a:hover::after {
         linear-gradient(
             90deg,
             transparent,
-            rgba(200, 63, 53, 0.3),
+            rgba(181, 31, 43, 0.3),
             transparent
         );
 
@@ -1396,7 +1471,7 @@ nav a:hover::after {
     background:
         radial-gradient(
             circle,
-            rgba(143, 107, 179, 0.07),
+            rgba(118, 86, 168, 0.08),
             transparent 65%
         );
 
@@ -1429,11 +1504,11 @@ nav a:hover::after {
     background:
         linear-gradient(
             145deg,
-            rgba(19, 14, 22, 0.96),
-            rgba(8, 7, 12, 0.97)
+            rgba(18, 17, 25, 0.97),
+            rgba(6, 6, 10, 0.98)
         );
 
-    border: 1px solid rgba(234, 217, 183, 0.11);
+    border: 1px solid rgba(241, 240, 235, 0.11);
 
     transition:
         transform 0.3s ease,
@@ -1457,7 +1532,7 @@ nav a:hover::after {
     background: var(--vermilion);
 
     box-shadow:
-        0 0 10px rgba(200, 63, 53, 0.5);
+        0 0 10px rgba(181, 31, 43, 0.5);
 
     opacity: 0.5;
 }
@@ -1465,14 +1540,28 @@ nav a:hover::after {
 .generation-card:hover {
     transform: translateY(-5px);
 
-    border-color: rgba(200, 63, 53, 0.45);
+    border-color: rgba(181, 31, 43, 0.45);
 
     background:
         linear-gradient(
             145deg,
-            #21161b,
-            #0d0910
+            #1e151a,
+            #09080d
         );
+}
+
+.generation-card.featured {
+    border-color: rgba(181, 31, 43, 0.4);
+
+    box-shadow:
+        inset 0 0 30px rgba(181, 31, 43, 0.035);
+}
+
+.generation-card.featured::after {
+    background: var(--purple-light);
+
+    box-shadow:
+        0 0 12px rgba(180, 147, 224, 0.65);
 }
 
 .generation-era {
@@ -1504,7 +1593,7 @@ nav a:hover::after {
 .generation-card p {
     margin-top: 10px;
 
-    color: #716963;
+    color: #716d75;
 
     font-size: 12px;
 
@@ -1512,7 +1601,181 @@ nav a:hover::after {
 }
 
 
-/* COMMUNITY */
+/* =========================================================
+   GAMES SECTION
+========================================================= */
+
+.games-section {
+    position: relative;
+}
+
+.games-section::before {
+    content: "";
+
+    position: absolute;
+
+    top: 90px;
+    right: -160px;
+
+    width: 420px;
+    height: 420px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(91, 155, 213, 0.055),
+            transparent 68%
+        );
+
+    filter: blur(30px);
+
+    pointer-events: none;
+}
+
+
+/* GAME LIST */
+
+.games-list {
+    grid-template-columns: repeat(4, 1fr);
+
+    margin-top: 45px;
+}
+
+.games-list .generation-card {
+    min-height: 220px;
+}
+
+.games-list .generation-card:nth-child(1) {
+    border-color: rgba(181, 31, 43, 0.25);
+}
+
+.games-list .generation-card:nth-child(2) {
+    border-color: rgba(118, 86, 168, 0.28);
+}
+
+.games-list .generation-card:nth-child(3) {
+    border-color: rgba(255, 193, 70, 0.18);
+}
+
+.games-list .generation-card:nth-child(4) {
+    border-color: rgba(91, 155, 213, 0.22);
+}
+
+.games-list .generation-card:nth-child(3)::after {
+    background: var(--ken);
+
+    box-shadow:
+        0 0 10px rgba(240, 184, 75, 0.5);
+}
+
+.games-list .generation-card:nth-child(4)::after {
+    background: var(--blue);
+
+    box-shadow:
+        0 0 10px rgba(91, 155, 213, 0.5);
+}
+
+
+/* =========================================================
+   KEN
+========================================================= */
+
+.ken-card {
+    position: relative;
+
+    margin-top: 20px;
+
+    padding: 25px;
+
+    border: 1px solid rgba(240, 184, 75, 0.2);
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(240, 184, 75, 0.09),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(35, 28, 15, 0.8),
+            rgba(10, 9, 12, 0.95)
+        );
+}
+
+.ken-card::before {
+    content: "KEN";
+
+    position: absolute;
+
+    right: 25px;
+    top: 17px;
+
+    color: rgba(240, 184, 75, 0.08);
+
+    font-family: "Rajdhani", sans-serif;
+
+    font-size: 48px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+}
+
+.ken-card h3 {
+    color: var(--ken-light);
+
+    font-family: "Rajdhani", sans-serif;
+
+    font-size: 23px;
+
+    letter-spacing: 1.5px;
+}
+
+.ken-card p {
+    max-width: 600px;
+
+    margin-top: 8px;
+
+    color: #827970;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+}
+
+.ken-symbol {
+    display: inline-grid;
+
+    place-items: center;
+
+    width: 42px;
+    height: 42px;
+
+    margin-right: 10px;
+
+    border: 1px solid rgba(240, 184, 75, 0.35);
+
+    background:
+        rgba(240, 184, 75, 0.08);
+
+    color: var(--ken-light);
+
+    font-family: "Rajdhani", sans-serif;
+
+    font-weight: 800;
+
+    font-size: 19px;
+
+    box-shadow:
+        3px 3px 0 rgba(141, 100, 27, 0.3);
+}
+
+
+/* =========================================================
+   COMMUNITY
+========================================================= */
 
 .community {
     display: grid;
@@ -1529,7 +1792,7 @@ nav a:hover::after {
 
     margin-top: 27px;
 
-    color: #8b817a;
+    color: #8b8790;
 
     font-size: 14px;
 
@@ -1563,7 +1826,7 @@ nav a:hover::after {
 
     gap: 10px;
 
-    color: #928881;
+    color: #928e96;
 
     font-size: 11px;
 }
@@ -1575,7 +1838,9 @@ nav a:hover::after {
 }
 
 
-/* INFO BUTTONS */
+/* =========================================================
+   INFO BUTTONS
+========================================================= */
 
 .community-info-buttons {
     display: grid;
@@ -1600,13 +1865,13 @@ nav a:hover::after {
 
     padding: 18px 20px;
 
-    border: 1px solid rgba(234, 217, 183, 0.13);
+    border: 1px solid rgba(241, 240, 235, 0.13);
 
     background:
         linear-gradient(
             110deg,
-            rgba(200, 63, 53, 0.06),
-            rgba(143, 107, 179, 0.035)
+            rgba(181, 31, 43, 0.06),
+            rgba(118, 86, 168, 0.035)
         );
 
     color: var(--white);
@@ -1647,17 +1912,17 @@ nav a:hover::after {
 .info-button:hover {
     transform: translateX(5px);
 
-    border-color: rgba(200, 63, 53, 0.42);
+    border-color: rgba(181, 31, 43, 0.42);
 
     background:
         linear-gradient(
             110deg,
-            rgba(200, 63, 53, 0.11),
-            rgba(143, 107, 179, 0.055)
+            rgba(181, 31, 43, 0.11),
+            rgba(118, 86, 168, 0.055)
         );
 
     box-shadow:
-        5px 5px 0 rgba(200, 63, 53, 0.07);
+        5px 5px 0 rgba(181, 31, 43, 0.07);
 }
 
 .info-button:hover::before {
@@ -1674,9 +1939,10 @@ nav a:hover::after {
 
     place-items: center;
 
-    border: 1px solid rgba(234, 217, 183, 0.16);
+    border: 1px solid rgba(241, 240, 235, 0.16);
 
-    background: rgba(8, 7, 12, 0.7);
+    background:
+        rgba(5, 5, 8, 0.7);
 
     color: var(--vermilion-light);
 
@@ -1706,7 +1972,7 @@ nav a:hover::after {
 }
 
 .info-button-content small {
-    color: #746a64;
+    color: #746f78;
 
     font-size: 10px;
 
@@ -1732,7 +1998,9 @@ nav a:hover::after {
 }
 
 
-/* QUOTE */
+/* =========================================================
+   QUOTE
+========================================================= */
 
 .quote-card {
     position: relative;
@@ -1742,19 +2010,19 @@ nav a:hover::after {
     background:
         radial-gradient(
             circle at 90% 10%,
-            rgba(143, 107, 179, 0.08),
+            rgba(118, 86, 168, 0.09),
             transparent 35%
         ),
         linear-gradient(
             145deg,
-            #1c151e,
-            #0b080e
+            #19161f,
+            #07070b
         );
 
-    border: 1px solid rgba(234, 217, 183, 0.16);
+    border: 1px solid rgba(241, 240, 235, 0.16);
 
     box-shadow:
-        9px 9px 0 rgba(200, 63, 53, 0.07);
+        9px 9px 0 rgba(181, 31, 43, 0.07);
 }
 
 .quote-card::before {
@@ -1773,6 +2041,7 @@ nav a:hover::after {
             90deg,
             var(--vermilion),
             var(--purple),
+            var(--blue),
             transparent
         );
 }
@@ -1829,7 +2098,9 @@ nav a:hover::after {
 }
 
 
-/* JOIN */
+/* =========================================================
+   JOIN
+========================================================= */
 
 .join-section {
     position: relative;
@@ -1849,19 +2120,19 @@ nav a:hover::after {
     background:
         radial-gradient(
             ellipse at center,
-            rgba(200, 63, 53, 0.1),
+            rgba(181, 31, 43, 0.11),
             transparent 55%
         ),
         radial-gradient(
             circle at 70% 30%,
-            rgba(143, 107, 179, 0.08),
+            rgba(118, 86, 168, 0.09),
             transparent 35%
         ),
-        #09070d;
+        #07070b;
 }
 
 .join-section::before {
-    content: "NEXUS";
+    content: "BANKAI";
 
     position: absolute;
 
@@ -1874,14 +2145,14 @@ nav a:hover::after {
 
     font-family: "Rajdhani", sans-serif;
 
-    font-size: 25vw;
+    font-size: 21vw;
 
     font-weight: 800;
 
     letter-spacing: -5px;
 
     -webkit-text-stroke:
-        1px rgba(234, 217, 183, 0.025);
+        1px rgba(241, 240, 235, 0.025);
 
     pointer-events: none;
 
@@ -1889,14 +2160,14 @@ nav a:hover::after {
 }
 
 .join-section::after {
-    content: "月";
+    content: "卍";
 
     position: absolute;
 
     right: 7%;
     top: 10%;
 
-    color: rgba(234, 217, 183, 0.025);
+    color: rgba(241, 240, 235, 0.025);
 
     font-family: serif;
 
@@ -1914,7 +2185,7 @@ nav a:hover::after {
     background:
         radial-gradient(
             ellipse,
-            rgba(200, 63, 53, 0.11),
+            rgba(181, 31, 43, 0.12),
             transparent 70%
         );
 
@@ -1934,7 +2205,7 @@ nav a:hover::after {
 
     margin: 27px auto 31px;
 
-    color: #897f78;
+    color: #897f86;
 
     font-size: 14px;
 
@@ -1952,23 +2223,23 @@ nav a:hover::after {
         linear-gradient(
             135deg,
             var(--vermilion-light),
-            var(--vermilion)
+            var(--vermilion-dark)
         );
 
-    color: var(--moon);
+    color: var(--white);
 
-    border: 1px solid rgba(234, 217, 183, 0.25);
+    border: 1px solid rgba(241, 240, 235, 0.25);
 
     box-shadow:
-        6px 6px 0 var(--parchment);
+        6px 6px 0 var(--purple);
 }
 
 .join-button:hover {
     transform: translate(-4px, -4px);
 
     box-shadow:
-        10px 10px 0 var(--parchment),
-        0 0 40px rgba(200, 63, 53, 0.15);
+        10px 10px 0 var(--purple),
+        0 0 40px rgba(181, 31, 43, 0.18);
 }
 
 .join-button span {
@@ -1980,7 +2251,7 @@ nav a:hover::after {
 
     margin-top: 19px;
 
-    color: #554d48;
+    color: #554f57;
 
     font-size: 10px;
 
@@ -1988,14 +2259,16 @@ nav a:hover::after {
 }
 
 
-/* FOOTER */
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer {
     background:
         linear-gradient(
             180deg,
-            #08060b,
-            #050409
+            #060609,
+            #030305
         );
 
     border-top: 1px solid var(--border);
@@ -2046,11 +2319,11 @@ footer {
     font-size: 16px;
 
     box-shadow:
-        3px 3px 0 var(--parchment);
+        3px 3px 0 var(--purple);
 }
 
 .footer-inner p {
-    color: #514a46;
+    color: #514c54;
 
     font-size: 10px;
 
@@ -2058,7 +2331,7 @@ footer {
 }
 
 .copyright {
-    color: #423c39;
+    color: #423e45;
 
     font-size: 9px;
 
@@ -2066,7 +2339,9 @@ footer {
 }
 
 
-/* REVEAL ANIMATIONS */
+/* =========================================================
+   REVEAL ANIMATIONS
+========================================================= */
 
 .js-reveal {
     opacity: 0;
@@ -2087,7 +2362,9 @@ footer {
 }
 
 
-/* CUSTOM CURSOR */
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
 
 .nexus-cursor {
     position: fixed;
@@ -2095,7 +2372,7 @@ footer {
     width: 18px;
     height: 18px;
 
-    border: 1px solid rgba(234, 217, 183, 0.65);
+    border: 1px solid rgba(241, 240, 235, 0.65);
 
     border-radius: 50%;
 
@@ -2125,7 +2402,7 @@ footer {
     background: var(--vermilion);
 
     box-shadow:
-        0 0 15px rgba(200, 63, 53, 0.55);
+        0 0 15px rgba(181, 31, 43, 0.55);
 }
 
 .cursor-active {
@@ -2136,7 +2413,9 @@ footer {
 }
 
 
-/* FALLING SPIRITS / PETALS */
+/* =========================================================
+   SPIRIT PARTICLES
+========================================================= */
 
 .nexus-petal {
     position: fixed;
@@ -2147,7 +2426,7 @@ footer {
 
     pointer-events: none;
 
-    color: rgba(237, 105, 85, 0.7);
+    color: rgba(225, 58, 70, 0.7);
 
     font-size: 12px;
 
@@ -2156,11 +2435,12 @@ footer {
 
     filter:
         drop-shadow(
-            0 0 5px rgba(200, 63, 53, 0.18)
+            0 0 5px rgba(181, 31, 43, 0.18)
         );
 }
 
 @keyframes nexusFall {
+
     0% {
         transform:
             translate3d(0, -10vh, 0)
@@ -2183,7 +2463,9 @@ footer {
 }
 
 
-/* CLICK EFFECT */
+/* =========================================================
+   CLICK EFFECT
+========================================================= */
 
 .nexus-click {
     position: fixed;
@@ -2204,6 +2486,7 @@ footer {
 }
 
 @keyframes nexusBurst {
+
     from {
         transform:
             translate(-50%, -50%)
@@ -2222,7 +2505,9 @@ footer {
 }
 
 
-/* FLASH EFFECT */
+/* =========================================================
+   FLASH EFFECT
+========================================================= */
 
 .manga-flash {
     animation:
@@ -2230,6 +2515,7 @@ footer {
 }
 
 @keyframes mangaFlash {
+
     0% {
         filter: brightness(1);
     }
@@ -2246,7 +2532,9 @@ footer {
 }
 
 
-/* MODAL */
+/* =========================================================
+   MODAL
+========================================================= */
 
 body.modal-open {
     overflow: hidden;
@@ -2288,7 +2576,7 @@ body.modal-open {
     inset: 0;
 
     background:
-        rgba(4, 3, 8, 0.86);
+        rgba(3, 3, 6, 0.88);
 
     backdrop-filter: blur(14px);
 }
@@ -2309,19 +2597,19 @@ body.modal-open {
     background:
         radial-gradient(
             circle at 90% 10%,
-            rgba(143, 107, 179, 0.08),
+            rgba(118, 86, 168, 0.09),
             transparent 35%
         ),
         linear-gradient(
             145deg,
-            #211821,
-            #0b080e
+            #1c1822,
+            #08070c
         );
 
-    border: 1px solid rgba(234, 217, 183, 0.2);
+    border: 1px solid rgba(241, 240, 235, 0.2);
 
     box-shadow:
-        10px 10px 0 rgba(200, 63, 53, 0.1),
+        10px 10px 0 rgba(181, 31, 43, 0.1),
         0 30px 100px rgba(0, 0, 0, 0.65);
 
     transform:
@@ -2353,20 +2641,20 @@ body.modal-open {
         linear-gradient(
             90deg,
             var(--vermilion),
-            var(--parchment),
-            var(--purple)
+            var(--purple),
+            var(--blue)
         );
 }
 
 .nexus-modal-panel::after {
-    content: "妖";
+    content: "卍";
 
     position: absolute;
 
     right: 25px;
     bottom: 10px;
 
-    color: rgba(234, 217, 183, 0.025);
+    color: rgba(241, 240, 235, 0.025);
 
     font-family: serif;
 
@@ -2388,12 +2676,12 @@ body.modal-open {
 
     place-items: center;
 
-    border: 1px solid rgba(234, 217, 183, 0.17);
+    border: 1px solid rgba(241, 240, 235, 0.17);
 
     background:
-        rgba(8, 7, 12, 0.7);
+        rgba(5, 5, 8, 0.7);
 
-    color: #9c9188;
+    color: #9c98a0;
 
     font-size: 24px;
 
@@ -2414,7 +2702,7 @@ body.modal-open {
     border-color: var(--vermilion);
 
     background:
-        rgba(200, 63, 53, 0.08);
+        rgba(181, 31, 43, 0.08);
 
     transform: rotate(90deg);
 }
@@ -2440,7 +2728,7 @@ body.modal-open {
 }
 
 .nexus-modal-body {
-    color: #948981;
+    color: #948e97;
 
     font-size: 13px;
 
@@ -2464,7 +2752,7 @@ body.modal-open {
     border-left: 3px solid var(--vermilion);
 
     background:
-        rgba(200, 63, 53, 0.055);
+        rgba(181, 31, 43, 0.055);
 
     color: var(--parchment-light);
 
@@ -2478,7 +2766,25 @@ body.modal-open {
 }
 
 
-/* RESPONSIVE */
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .games-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nav-container {
+        gap: 15px;
+    }
+
+    nav {
+        gap: 18px;
+    }
+}
+
 
 @media (max-width: 900px) {
 
@@ -2520,6 +2826,10 @@ body.modal-open {
         grid-template-columns: 1fr 1fr;
     }
 
+    .games-list {
+        grid-template-columns: 1fr 1fr;
+    }
+
     .community {
         grid-template-columns: 1fr;
 
@@ -2527,6 +2837,10 @@ body.modal-open {
     }
 }
 
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
 
 @media (max-width: 600px) {
 
@@ -2557,6 +2871,7 @@ body.modal-open {
 
     .feature-grid,
     .generation-list,
+    .games-list,
     .community-points {
         grid-template-columns: 1fr;
     }
@@ -2620,7 +2935,7 @@ body.modal-open {
         padding: 35px 25px 30px;
 
         box-shadow:
-            7px 7px 0 rgba(200, 63, 53, 0.1);
+            7px 7px 0 rgba(181, 31, 43, 0.1);
     }
 
     .nexus-modal-panel h2 {
@@ -2636,6 +2951,10 @@ body.modal-open {
     }
 }
 
+
+/* =========================================================
+   RESPONSIVE — SMALL PHONES
+========================================================= */
 
 @media (max-width: 430px) {
 
@@ -2663,10 +2982,16 @@ body.modal-open {
         padding-top: 90px;
         padding-bottom: 90px;
     }
+
+    .games-list .generation-card {
+        min-height: 195px;
+    }
 }
 
 
-/* REDUCED MOTION */
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
 
